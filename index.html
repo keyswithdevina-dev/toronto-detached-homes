@@ -19,11 +19,20 @@
     // ============================
 
     // Forward the visitor after the delay, keeping any ?gclid=... from the ad click
+    // setTimeout(function () {
+    //   var join = FORM_URL.indexOf('?') === -1 ? '?' : '&';
+    //   var extra = window.location.search.replace(/^\?/, '');
+    //   window.location.href = extra ? FORM_URL + join + extra : FORM_URL;
+    // }, DELAY_MS);
+
+    // Skip the redirect when the address ends in ?test=1 (for verification only)
+  if (window.location.search.indexOf('test=1') === -1) {
     setTimeout(function () {
       var join = FORM_URL.indexOf('?') === -1 ? '?' : '&';
       var extra = window.location.search.replace(/^\?/, '');
       window.location.href = extra ? FORM_URL + join + extra : FORM_URL;
     }, DELAY_MS);
+  }
   </script>
 </head>
 <body style="font-family: Arial, sans-serif; text-align: center; padding: 60px 20px;">
